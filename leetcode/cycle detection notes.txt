@@ -1,0 +1,18 @@
+notes on cycle detection:
+
+In linked list:
+use floyd's hare tortoise algo to detect loop 
+
+detect the start of ll:
+start from head of linked list and point where fast met slow . iterate untill they meet . this is the beginning of loop.
+
+
+DAG loop:
+
+DFS when it produces back edge.
+can color edges g,b,w or use visiting set with making adjacency list empty to or another set to do the same.
+
+Undirected graph:
+
+Use union find. if absolute parents are different(find op) , then add one edge at a time : union 
+if absolute parent are same then adding edge will introduce cycle

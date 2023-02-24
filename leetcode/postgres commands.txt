@@ -1,0 +1,56 @@
+book----
+
+pk:bookID 
+title
+average_rating
+isbn
+isbn13
+language_code
+num_pages
+ratings_count
+text_reviews_count
+publication_date
+
+
+fk:pub_id
+
+
+lang------
+
+
+
+
+publisher
+
+pk:publisher_id
+publisher
+
+pub:book==>(one(k),many(fk))
+
+
+
+
+
+
+
+
+
+
+
+
+author(many:many)
+
+pk:author_id
+name
+
+
+
+Select lang, max(rnk.average_rating) as high_rate
+from
+(SELECT 
+    lang,average_rating, 
+    rank() OVER (PARTITION BY lang Order by average_rating DESC) AS rating
+FROM book_master) rnk
+where rnk.rating<=5
+group by lang
+order by high_rate desc;
